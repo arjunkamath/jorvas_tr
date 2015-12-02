@@ -1,16 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <% include ../partials/header.ejs %>
 </head>
 
 <body>
 
+<!-- Make sure all your bars are the first things in your <body> -->
+    <header class="bar bar-nav">
+      <h1 class="title">Time Reporting</h1>
+    </header>
 
-<div class="jumbotron text-center">
-  <div class="container">
-    <h1>Sample text</h1>
-  </div>
-</div>
+    <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
+    <div class="content">
+      <p class="content-padded">Signum: earjkam</p>
+      <p class="content-padded">Date: Dec 2 2014</p>
+      <p class="content-padded">You have <strong>entered</strong> JHC</p>
+      <div class="card">
+        <ul class="table-view">
+          <li class="table-view-cell">
+              <strong>Ratchet documentation</strong>
+            </a>
+          </li>
+          <li class="table-view-cell">
+              <strong>Ratchet on Github</strong>
+            </a>
+          </li>
+          <li class="table-view-cell">
+              <strong>Ratchet Google group</strong>
+            </a>
+          </li>
+          <li class="table-view-cell">
+              <strong>Ratchet on Twitter</strong>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
 
 </body>
 </html>
