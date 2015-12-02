@@ -13,10 +13,7 @@
 
     <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
     <div class="content" data-role="page" id="main-page">
-      <p class="content-padded">Signum: earjkam</p>
-      <p class="content-padded">Date: Dec 2 2014</p>
-      <p id="latLongText"></p>
-      <p class="content-padded">You have <strong>entered</strong> JHC</p>
+      <p class="content-padded" id="locationText"></p>
       <div class="card">
         <table class="table table-striped">
           <thead>
@@ -24,27 +21,13 @@
               <th>Date</th>
               <th>Entry</th>
               <th>Exit</th>
-              <th>Hours</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Dec 2, Wed</td>
-              <td>9:00</td>
-              <td>16:30</td>
-              <td>7:00</td>
-            </tr>
-            <tr>
-              <td>Dec 3, Thu</td>
-              <td>9:00</td>
-              <td>16:30</td>
-              <td>7:00</td>
-            </tr>
-            <tr>
-              <td>Dec 4, Fri</td>
-              <td>9:00</td>
-              <td>16:30</td>
-              <td>7:00</td>
+              <td id="todayDay"></td>
+              <td id="entryTime"></td>
+              <td id="exitTime"></td>
             </tr>
           </tbody> 
         </table>
