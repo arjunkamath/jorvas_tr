@@ -43,12 +43,13 @@ app.post('/saveData', function (request, response){
     console.log("Submit form: " + request.body.signum + ", " + request.body.todayDay + ", " + request.body.entryTime + ", " + request.body.exitTime);
 
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-      client.query('INSERT INTO flexim_data VALUES($1, $2, $3, $4)", [request.body.signum, request.body.todayDay, request.body.entryTime, request.body.exitTime]', function(err, result) {
+      client.query('INSERT INTO flexim_data(signum, day, entry, exit) values($1, $2, $3, $4)", [request.body.signum, request.body.todayDay, request.body.entryTime, request.body.exitTime]', function(err, result) {
         done();
-        if (err)
-        { console.error(err); response.send("Error " + err); }
-        else
-        { 
+        if (err) { 
+          console.error(err); 
+          response.send("Error " + err); 
+        }
+        else { 
           console.log("db entry successful")
           response.render('pages/db', {results: result.rows} ); 
         }
