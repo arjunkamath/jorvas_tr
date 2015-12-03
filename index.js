@@ -39,6 +39,19 @@ app.get('/db', function (request, response) {
   });
 })
 
+app.post('/ownDB', function (request, response) {
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    client.query("SELECT * FROM flexim_data WHERE signum = ($1)", [request.body.signum], function(err, result) {
+      done();
+      if (err)
+       { console.error(err); response.send("Error " + err); }
+      else
+       { response.render('pages/db', {results: result.rows} ); }
+    });
+  });
+})
+
+
 app.post('/saveData', function (request, response){
     console.log("Submit form: " + request.body.signum + ", " + request.body.todayDay + ", " + request.body.entryTime + ", " + request.body.exitTime);
 
@@ -50,8 +63,7 @@ app.post('/saveData', function (request, response){
           response.send("Error " + err); 
         }
         else { 
-          console.log("db entry successful")
-          response.render('pages/db', {results: result.rows} ); 
+          console.log("db entry successful");
         }
        });
     });

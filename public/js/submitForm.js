@@ -13,6 +13,12 @@ $('#submitData').click(function() {
 });
 
 $('#gotoDB').click(function() {
-	$.get("/db");
+	var text_value = $("#signumVal").val();
+	if(text_value=='') {
+		alert("Please enter signum");
+	} else {
+		//alert(text_value);
+		$.post("/ownDB", {signum : text_value});
+	}
 });
 
