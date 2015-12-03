@@ -11,13 +11,17 @@ $(document).ready(function() {
     var jorvasPosLong = 24.51244;
     var distance;
     var radialAllowance = 1;
-    var lastInJorvas = false;
+    //var lastInJorvas =  null;
+    //var savedEntryTime = null;
+    //var savedExitTime = null;
 
     var now = new Date();
-    $("#todayDay").text(now.toJSON().slice(0,10))
+    $("#todayDay").text(now.toJSON().slice(0,10));
+    $("#entryTime").text(localStorage.getItem("savedEntryTime"));
+    $("#exitTime").text(localStorage.getItem("savedExitTime"));
 
     if (navigator.geolocation) {
-      navigator.geolocation.watchPosition(function(position) {
+        navigator.geolocation.watchPosition(function(position) {
         console.log("watch position called")
 
         distance = calculateDistance(jorvasPosLat, jorvasPosLong, position.coords.latitude, position.coords.longitude)
@@ -26,18 +30,23 @@ $(document).ready(function() {
 
         if(distance < radialAllowance){
           $("#locationText").text("You are IN Jorvas")
-		  if(!lastInJorvas){
-			$("#entryTime").text(now.toJSON().slice(11,16))
-			lastInJorvas = true;
-		  }
-          console.log("IN Jorvas called")
+		      
+          if(localStorage.getItem("lastInJorvas") == "no" || localStorage.getItem("lastInJorvas") == null){
+            localStorage.setItem("savedEntryTime", getCurrentTime());
+            $("#entryTime").text(localStorage.getItem("savedEntryTime"));
+            localStorage.setItem("lastInJorvas", "yes");
+		      }
+          console.log("IN Jorvas called " + localStorage.getItem("savedEntryTime"));
+
         } else {
           $("#locationText").text("You are NOT IN Jorvas")
-		  if(lastInJorvas){
-            $("#exitTime").text(now.toJSON().slice(11,16))
-            lastInJorvas = false;
-		  }
-          console.log("NOT IN Jorvas called")
+		      
+          if(localStorage.getItem("lastInJorvas") == "yes" || localStorage.getItem("lastInJorvas") == null){
+            localStorage.setItem("savedExitTime", getCurrentTime());
+            $("#entryTime").text(localStorage.getItem("savedExitTime"));
+            localStorage.setItem("lastInJorvas", "no");
+		      }
+          console.log("NOT IN Jorvas called " + localStorage.getItem("savedExitTime"))
         }
       });
     }
@@ -61,4 +70,9 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
 
 Number.prototype.toRad = function() {
   return this * Math.PI / 180;
+}
+
+function getCurrentTime () {
+   var now = new Date();
+   return (now.toJSON().slice(11,16));
 }
