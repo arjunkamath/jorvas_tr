@@ -22,7 +22,9 @@ $('#gotoDB').click(function() {
 			console.log(data);
 			//$(".result").html( data );
 			//var content = $( data ).find( "#content" );
-    		$( "#result" ).empty().append( data );
+    		//$( "#result" ).empty().append( data );
+    		$( ".output" ).append( data );
+
 		});
 	}
 });
