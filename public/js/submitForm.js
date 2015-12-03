@@ -10,4 +10,4 @@ console.log(exitTimeForm);
 
 $('#submit').click(function() {
 	$.post("/saveData", {signum : signumForm, todayDay : dayForm, entryTime : entryTimeForm, exitTime : exitTimeForm});
-}
+});
