@@ -29,3 +29,8 @@ app.get('/db', function (request, response) {
     });
   });
 })
+
+app.post('/', function(request, response){
+    console.log("Submit form" + request.body);
+    response.render('pages/index');
+});

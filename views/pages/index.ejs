@@ -32,10 +32,10 @@
           </tbody> 
         </table>
       </div>
-      <form class="content-padded">
-         <input id="signum" type="text" placeholder="eabcpqr">
-         <button id="saveData" class="btn btn-positive btn-block">Save Today's Data</button>
-       </form>  
+      <form class="content-padded" id="myform" action="/" method="post" enctype="application/x-www-form-urlencoded">
+         <input id="signum" type="text" placeholder="ejorvas" name="I_appear_in_req_body">
+         <input type="submit" id="mysubmit" class="btn btn-positive btn-block" value="Save Today's Data">
+      </form>  
     </div>
 </body>
     <script src="/js/geolocation.js"></script>
