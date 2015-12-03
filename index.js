@@ -40,6 +40,6 @@ app.get('/db', function (request, response) {
 })
 
 app.post('/saveData', function (request, response){
-    console.log("Submit form" + request.body);
+    console.log("Submit form: " + request.body.signum + ", " + request.body.todayDay + ", " + request.body.entryTime + ", " + request.body.exitTime);
     response.render('pages/index');
 });
