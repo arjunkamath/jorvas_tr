@@ -21,8 +21,8 @@ $('#gotoDB').click(function() {
 		$.post("/ownDB", {signum : text_value}, function(data){
 			console.log(data);
 			//$(".result").html( data );
-			var content = $( data ).find( "#content" );
-    		$( "#result" ).empty().append( content );
+			//var content = $( data ).find( "#content" );
+    		$( "#result" ).empty().append( data );
 		});
 	}
 });
