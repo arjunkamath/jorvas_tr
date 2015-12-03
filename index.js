@@ -3,13 +3,13 @@ var app = express();
 var pg = require('pg');
 var bodyParser = require('body-parser')
 
-app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use( bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
 
-app.use(express.urlencoded());
-app.use(express.json());      // if needed
+//app.use(express.urlencoded());
+//app.use(express.json());      // if needed
 
 app.set('port', (process.env.PORT || 5000));
 
