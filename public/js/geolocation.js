@@ -16,7 +16,8 @@ $(document).ready(function() {
     //var savedExitTime = null;
 
     var now = new Date();
-    $("#todayDay").text(now.toJSON().slice(0,10));
+    localStorage.setItem("todayDay", now.toJSON().slice(0,10));
+    $("#todayDay").text(localStorage.getItem("todayDay"));
     $("#entryTime").text(localStorage.getItem("savedEntryTime"));
     $("#exitTime").text(localStorage.getItem("savedExitTime"));
 
@@ -55,7 +56,6 @@ $(document).ready(function() {
       });
     }
 });
-
 
 // Reused code - copyright Moveable Type Scripts - retrieved May 4, 2010.
 // http://www.movable-type.co.uk/scripts/latlong.html

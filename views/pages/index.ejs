@@ -15,28 +15,29 @@
     <div class="content" data-role="page" id="main-page">
       <p class="content-padded" id="locationText"></p>
       <div class="card">
-        <form class="content-padded" id="myform" action="saveData" method="post" enctype="application/x-www-form-urlencoded">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>Today</th>
-                <th>Entry (GMT)</th>
-                <th>Exit (GMT)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td name="todayDay" id="todayDay"></td>
-                <td name="entryTime" id="entryTime"></td>
-                <td name="exitTime" id="exitTime"></td>
-              </tr>
-            </tbody> 
-          </table>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Today</th>
+              <th>Entry (GMT)</th>
+              <th>Exit (GMT)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="todayDay"></td>
+              <td id="entryTime"></td>
+              <td id="exitTime"></td>
+            </tr>
+          </tbody> 
+        </table>
+      </div>
+      <form class="content-padded" id="myform" action="saveData" method="post" enctype="application/x-www-form-urlencoded">
          <input id="signum" name="signum" type="text" placeholder="ejorvas">
-         <input type="submit" id="mysubmit" class="btn btn-positive btn-block" value="Submit">
-        </form>
-      </div>  
+         <input type="submit" id="submit" class="btn btn-positive btn-block" value="Submit">
+      </form>  
     </div>
 </body>
     <script src="/js/geolocation.js"></script>
+    <script src="/js/submitForm.js"></script>
 </html>
