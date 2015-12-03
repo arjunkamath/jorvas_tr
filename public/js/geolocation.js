@@ -36,7 +36,9 @@ $(document).ready(function() {
           $("#exitTime").text(now.toJSON().slice(11,16))
           lastInJorvas = false;
           console.log("NOT IN Jorvas called")
-        }
+        } else {
+		  $("#locationText").text("There is an error")
+		}
       });
     }
 });
