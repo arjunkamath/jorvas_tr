@@ -9,6 +9,7 @@
 <!-- Make sure all your bars are the first things in your <body> -->
     <header class="bar bar-nav">
       <h1 class="title">Time Reporting</h1>
+      <button class="btn pull-right" id="gotoDB" onclick="location.href='db.html';" >Previous</button>
     </header>
 
     <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
@@ -33,8 +34,8 @@
         </table>
       </div>
       <div class="content-padded">
-        <input type="text" id="text" name="name" value="" />
-        <input type="button" id="text_value" value="Get Value"/>
+        <input type="text" id="signumVal" name="name" value="" />
+        <input type="button" id="submitData" class="btn btn-primary btn-block" value="Submit"/>
       </div>
     </div>
 </body>
