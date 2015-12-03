@@ -18,8 +18,11 @@ $('#gotoDB').click(function() {
 		alert("Please enter signum");
 	} else {
 		//alert(text_value);
-		$.post("/ownDB", {signum : text_value}, function(response){
-			console.log(response);
+		$.post("/ownDB", {signum : text_value}, function(data){
+			console.log(data);
+			//$(".result").html( data );
+			var content = $( data ).find( "#content" );
+    		$( "#result" ).empty().append( content );
 		});
 	}
 });
