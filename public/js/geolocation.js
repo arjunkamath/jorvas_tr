@@ -11,34 +11,34 @@ $(document).ready(function() {
     var jorvasPosLong = 24.51244;
     var distance;
     var radialAllowance = 1;
-    var lastInJorvas = true;
+    var lastInJorvas = false;
 
     var now = new Date();
     $("#todayDay").text(now.toJSON().slice(0,10))
 
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(function(position) {
-
         console.log("watch position called")
 
         distance = calculateDistance(jorvasPosLat, jorvasPosLong, position.coords.latitude, position.coords.longitude)
         console.log(position.coords.latitude + " " + position.coords.longitude)
         console.log(distance)
 
-        if(distance < radialAllowance && !lastInJorvas ){
+        if(distance < radialAllowance){
           $("#locationText").text("You are IN Jorvas")
-          $("#entryTime").text(now.toJSON().slice(11,16))
-          lastInJorvas = true;
+		  if(!lastInJorvas){
+			$("#entryTime").text(now.toJSON().slice(11,16))
+			lastInJorvas = true;
+		  }
           console.log("IN Jorvas called")
-          
-        } else if(distance > radialAllowance && lastInJorvas){
-          $("#locationText").text("You are NOT IN Jorvas")
-          $("#exitTime").text(now.toJSON().slice(11,16))
-          lastInJorvas = false;
-          console.log("NOT IN Jorvas called")
         } else {
-		  $("#locationText").text("There is an error")
-		}
+          $("#locationText").text("You are NOT IN Jorvas")
+		  if(lastInJorvas){
+            $("#exitTime").text(now.toJSON().slice(11,16))
+            lastInJorvas = false;
+		  }
+          console.log("NOT IN Jorvas called")
+        }
       });
     }
 });
