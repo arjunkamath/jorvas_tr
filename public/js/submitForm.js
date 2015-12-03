@@ -18,7 +18,9 @@ $('#gotoDB').click(function() {
 		alert("Please enter signum");
 	} else {
 		//alert(text_value);
-		$.get("/ownDB", {signum : text_value});
+		$.post("/ownDB", {signum : text_value}, function(response){
+			console.log(response);
+		});
 	}
 });
 
