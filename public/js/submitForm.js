@@ -19,10 +19,11 @@ $('#submit').click(function() {
 
 
 $('#text_value').click(function() {
-var text_value = $("#text").val();
-if(text_value=='') {
-alert("Enter Some Text In Input Field");
-}else{
-alert(text_value);
-}
+	var text_value = $("#text").val();
+	if(text_value=='') {
+		alert("Enter Some Text In Input Field");
+	} else {
+		alert(text_value);
+		$.post("/saveData", {signum : text_value, todayDay : dayForm, entryTime : entryTimeForm, exitTime : exitTimeForm});
+	}
 });
