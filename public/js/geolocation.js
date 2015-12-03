@@ -29,7 +29,7 @@ $(document).ready(function() {
         console.log(distance)
 
         if(distance < radialAllowance){
-          $("#locationText").text("You are IN Jorvas")
+          $("#locationText").text("You are in Jorvas")
 		      
           if(localStorage.getItem("lastInJorvas") == "no" || localStorage.getItem("lastInJorvas") == null){
             localStorage.setItem("savedEntryTime", getCurrentTime());
@@ -41,7 +41,7 @@ $(document).ready(function() {
           console.log("IN Jorvas called " + localStorage.getItem("savedEntryTime"));
 
         } else {
-          $("#locationText").text("You are NOT IN Jorvas")
+          $("#locationText").text("You are not in Jorvas")
 		      
           if(localStorage.getItem("lastInJorvas") == "yes" || localStorage.getItem("lastInJorvas") == null){
             localStorage.setItem("savedExitTime", getCurrentTime());
