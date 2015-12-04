@@ -21,8 +21,11 @@ $(document).ready(function() {
     $("#entryTime").text(localStorage.getItem("savedEntryTime"));
     $("#exitTime").text(localStorage.getItem("savedExitTime"));
 
+    //this is the default text
+    $("#locationText").text("Please turn on your GPS")
+
     if (navigator.geolocation) {
-        navigator.geolocation.watchPosition(function(position) {
+      navigator.geolocation.watchPosition(function(position) {
         console.log("watch position called")
 
         distance = calculateDistance(jorvasPosLat, jorvasPosLong, position.coords.latitude, position.coords.longitude)
