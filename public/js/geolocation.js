@@ -54,6 +54,8 @@ $(document).ready(function() {
           console.log("NOT IN Jorvas called " + localStorage.getItem("savedExitTime"))
         }
       });
+    } else {
+        $("#locationText").text("Please turn on your GPS")
     }
 });
 
