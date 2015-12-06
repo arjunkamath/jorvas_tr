@@ -6,11 +6,10 @@
 
 $(document).ready(function() {
     //console.log("geolocation called");
-    
     console.log(localStorage.getItem("signum"));
+    $("#displayedSignum").text(localStorage.getItem("signum"));
 
     getSignumRecursive();
-    
     
     var jorvasPosLat = 60.1302003;
     var jorvasPosLong = 24.51244;
@@ -19,6 +18,11 @@ $(document).ready(function() {
     //var lastInJorvas =  null;
     //var savedEntryTime = null;
     //var savedExitTime = null;
+
+    console.log("Today's date: " + moment().format('ll') );
+
+    $("#displayedDate").text(moment().format('ll'));
+    
 
     var now = new Date();
     localStorage.setItem("todayDay", now.toJSON().slice(0,10));

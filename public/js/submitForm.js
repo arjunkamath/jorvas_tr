@@ -36,7 +36,8 @@ function getSignumRecursive () {
         getSignumRecursive();
       } else if (val != null) {
         localStorage.setItem("signum", val);
-        console.log(localStorage.getItem("signum"));        
+        console.log(localStorage.getItem("signum"));
+        $("#displayedSignum").text(val)
       }
     }
 }
