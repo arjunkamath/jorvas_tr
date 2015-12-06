@@ -13,21 +13,14 @@ $('#submitData').click(function() {
 });
 
 $('#gotoDB').click(function() {
-	var text_value = $("#signumVal").val();
-	if(text_value=='') {
-		alert("Please enter signum");
-	} else {
-		//alert(text_value);
-		$.post("/ownDB", {signum : text_value}, function(data){
-			console.log(data);
-			//$(".result").html( data );
-			//var content = $( data ).find( "#content" );
-    		//$( "#result" ).empty().append( data );
-    		$( ".content" ).append( data );
-
-		});
-	}
-});
+	$.post("/ownDB", {signum : localStorage.getItem("signum")}, function(data){
+		console.log(data);
+		//$(".result").html( data );
+		//var content = $( data ).find( "#content" );
+   		//$( "#result" ).empty().append( data );
+   		$( ".content" ).append( data );
+	});
+}
 
 function getSignumRecursive () {
   if(localStorage.getItem("signum") == null){
