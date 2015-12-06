@@ -7,9 +7,10 @@
 <body>
 
 <!-- Make sure all your bars are the first things in your <body> -->
-    <header class="bar bar-nav">
-      <h1 class="title">Time Reporting</h1>
-      
+    <header class="bar bar-nav bar-title">
+      <a href="#noSignum">
+        <h1 class="title">Jorvas Time Reporting</h1>
+      </a>
     </header>
 
     <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
@@ -39,8 +40,19 @@
         <input type="button" id="submitData" class="btn btn-primary btn-block" value="Store Today's Data"/>
         <button class="btn btn-positive btn-block" id="gotoDB">Retrieve Your Data</button>
       </div>
-
     </div>
+
+    <!-- Popover if no stored signum found-->
+    <div id="noSignum" class="popover">
+      <header class="bar bar-nav popover-header">    
+        <h3 class="title">MOI!</h3>
+      </header>
+      <ul class="table-view center-table">
+        <li class="table-view-cell">Please enter your signum</li>
+      </ul>
+      <input type="text" class="content-padded" style="width:250px!important;"/>
+    </div>
+
 </body>
     <script src="/js/geolocation.js"></script>
     <script src="/js/submitForm.js"></script>
