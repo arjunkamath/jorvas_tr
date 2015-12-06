@@ -20,7 +20,7 @@ $('#gotoDB').click(function() {
    		//$( "#result" ).empty().append( data );
    		$( ".content" ).append( data );
 	});
-}
+});
 
 function getSignumRecursive () {
   if(localStorage.getItem("signum") == null){
