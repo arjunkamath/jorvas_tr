@@ -19,16 +19,9 @@ $(document).ready(function() {
     //var savedEntryTime = null;
     //var savedExitTime = null;
 
-    console.log("Today's date: " + moment().format('ll') );
-
-    console.log("Today's date 2: " + moment().get('date') );
+    console.log("Today's date: " + moment().format('L') );
 
     $("#displayedDate").text("w" + moment().format("ww ddd, D MMM YYYY"));
-    
-
-    var now = new Date();
-    localStorage.setItem("todayDay", now.toJSON().slice(0,10));
-    $("#todayDay").text(localStorage.getItem("todayDay"));
     $("#entryTime").text(localStorage.getItem("savedEntryTime"));
     $("#exitTime").text(localStorage.getItem("savedExitTime"));
 
@@ -45,31 +38,10 @@ $(document).ready(function() {
 
         if(distance < radialAllowance){
           $("#locationText").text("You are in Jorvas")
-		      
-          if(localStorage.getItem("lastInJorvas") == "no" || localStorage.getItem("lastInJorvas") == null){
-            localStorage.setItem("savedEntryTime", getCurrentTime());
-            $("#entryTime").text(localStorage.getItem("savedEntryTime"));
-            localStorage.setItem("lastInJorvas", "yes");
-
-            console.log("savedEntryTime set");
-		      }
-          console.log("IN Jorvas called " + localStorage.getItem("savedEntryTime"));
-
         } else {
-          $("#locationText").text("You are not in Jorvas")
-		      
-          if(localStorage.getItem("lastInJorvas") == "yes" || localStorage.getItem("lastInJorvas") == null){
-            localStorage.setItem("savedExitTime", getCurrentTime());
-            $("#entryTime").text(localStorage.getItem("savedExitTime"));
-            localStorage.setItem("lastInJorvas", "no");
-
-            console.log("savedExitTime set");
-		      }
-          console.log("NOT IN Jorvas called " + localStorage.getItem("savedExitTime"))
+          $("#locationText").text("You are not in Jorvas") 
         }
       });
-    } else {
-        $("#locationText").text("Please turn on your GPS")
     }
 });
 
@@ -93,6 +65,5 @@ Number.prototype.toRad = function() {
 }
 
 function getCurrentTime () {
-   var now = new Date();
-   return (now.toJSON().slice(11,16));
+  return (moment().format("HH:mm"));
 }

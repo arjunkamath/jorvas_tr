@@ -41,3 +41,9 @@ function getSignumRecursive () {
       }
     }
 }
+
+document.querySelector('#timerToggle')
+.addEventListener('toggle', function (e) {
+	console.log(e);
+	console.log(e.detail.isActive);
+});
