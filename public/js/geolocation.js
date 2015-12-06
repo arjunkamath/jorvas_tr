@@ -27,6 +27,13 @@ $(document).ready(function() {
     if(localStorage.getItem("associatedDate") == moment().format('L')){
       $("#entryTime").text(localStorage.getItem("savedEntryTime"));
       $("#exitTime").text(localStorage.getItem("savedExitTime"));  
+      $("#entryExitDiff").text(localStorage.getItem("savedEntryExitDiff"));
+      $("#totalHours").text(localStorage.getItem("savedHours"));
+    } else {
+      $("#entryTime").text(" ");
+      $("#exitTime").text(" ");
+      $("#entryExitDiff").text(" ");
+      $("#totalHours").text("00:00");
     }
     
     //this is the default text

@@ -93,9 +93,22 @@ document.querySelector('#timerToggle')
 		var diff = (moment.utc(now.diff(then))).format("HH:mm");
 		
 		console.log(diff);
-		$("#entryExitDiff").text(diff);
-
 		localStorage.setItem("savedEntryExitDiff", diff);
+		$("#entryExitDiff").text(localStorage.getItem("savedEntryExitDiff"));
+		
+		//Add diff to saved hours
+
+		//var addHours = moment(moment(localStorage.getItem("savedHours"), "HH:mm")).add(diff);
+
+		var dur1 = moment.duration(localStorage.getItem("savedEntryExitDiff"));
+		var dur2 = moment.duration(localStorage.getItem("savedHours"));
+		var addHours = (moment(dur1.add(dur2))).format("HH:mm");
+
+		localStorage.setItem("savedHours", addHours);
+		$("#totalHours").text(localStorage.getItem("savedHours"));
+
+		console.log(localStorage.getItem("savedHours"));
+
 		//Also save this to database
 		$.post("/saveData", {signum : localStorage.getItem("signum"), 
 			todayDay : localStorage.getItem("associatedDate"), 
@@ -104,3 +117,4 @@ document.querySelector('#timerToggle')
 		});
 	}
 });
+
