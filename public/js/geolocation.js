@@ -21,7 +21,9 @@ $(document).ready(function() {
 
     console.log("Today's date: " + moment().format('ll') );
 
-    $("#displayedDate").text(moment().format('ll'));
+    console.log("Today's date 2: " + moment().get('date') );
+
+    $("#displayedDate").text("w" + moment().format("ww ddd, D MMM YYYY"));
     
 
     var now = new Date();
