@@ -29,3 +29,14 @@ $('#gotoDB').click(function() {
 	}
 });
 
+function getSignumRecursive () {
+  if(localStorage.getItem("signum") == null){
+      var val = prompt("Please enter your signum", "eabcxyz");
+      if(val == "eabcxyz"){
+        getSignumRecursive();
+      } else if (val != null) {
+        localStorage.setItem("signum", val);
+        console.log(localStorage.getItem("signum"));        
+      }
+    }
+}

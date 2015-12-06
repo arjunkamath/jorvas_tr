@@ -5,12 +5,17 @@
 //console.log("geolocation called first");
 
 $(document).ready(function() {
-    console.log("geolocation called");
+    //console.log("geolocation called");
+    
+    console.log(localStorage.getItem("signum"));
+
+    getSignumRecursive();
+    
     
     var jorvasPosLat = 60.1302003;
     var jorvasPosLong = 24.51244;
     var distance;
-    var radialAllowance = 1;
+    var radialAllowance = 0.25;
     //var lastInJorvas =  null;
     //var savedEntryTime = null;
     //var savedExitTime = null;
