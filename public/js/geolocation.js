@@ -19,12 +19,16 @@ $(document).ready(function() {
     //var savedEntryTime = null;
     //var savedExitTime = null;
 
-    console.log("Today's date: " + moment().format('L') );
+    console.log("Today's date: " + moment().format('L'));
 
     $("#displayedDate").text("w" + moment().format("ww ddd, D MMM YYYY"));
-    $("#entryTime").text(localStorage.getItem("savedEntryTime"));
-    $("#exitTime").text(localStorage.getItem("savedExitTime"));
 
+    //if associatedDate is today, display values to user
+    if(localStorage.getItem("associatedDate") == moment().format('L')){
+      $("#entryTime").text(localStorage.getItem("savedEntryTime"));
+      $("#exitTime").text(localStorage.getItem("savedExitTime"));  
+    }
+    
     //this is the default text
     $("#locationText").text("Please turn on your GPS")
 

@@ -44,6 +44,41 @@ function getSignumRecursive () {
 
 document.querySelector('#timerToggle')
 .addEventListener('toggle', function (e) {
-	console.log(e);
+	//console.log(e);
 	console.log(e.detail.isActive);
+
+	var row;
+
+	if(e.detail.isActive){
+		//user logs in for first time, and there's no associated date data
+		if (localStorage.getItem("associatedDate") == null){
+			//set associatedDate to this day
+			localStorage.setItem("associatedDate", moment().format('L'));
+			localStorage.setItem("savedEntryTime", getCurrentTime());
+			$("#entryTime").text(localStorage.getItem("savedEntryTime"));
+		} else {
+			//if associatedDate is not today, clean everything
+			if(localStorage.getItem("associatedDate") != moment().format('L')){
+				localStorage.setItem("savedExitTime", null);
+				localStorage.setItem("associatedDate", moment().format('L'));
+				localStorage.setItem("savedEntryTime", getCurrentTime());
+				$("#entryTime").text(localStorage.getItem("savedEntryTime"));
+			} // if associatedDate is today, add new row (above with old data)
+			else {
+				$('#dailyTable tr:last').before('<tr><td>' + localStorage.getItem("savedEntryTime") + '</td><td> ' + localStorage.getItem("savedExitTime") + '</td><td>' + localStorage.getItem("entryExitDiff") + '</td></tr>');
+				//row = $("#dailyTable").insertRow(3);
+				//var cell = row.insertCell(0);
+				localStorage.setItem("savedExitTime", null);
+				localStorage.setItem("savedEntryTime", getCurrentTime());
+				$("#entryTime").text(localStorage.getItem("savedEntryTime"));
+			}
+		}
+	} //if user stops timer
+	else {
+		localStorage.setItem("savedExitTime", getCurrentTime());
+		$("#exitTime").text(localStorage.getItem("savedExitTime"));
+		$("#entryExitDiff").text(moment.duration((localStorage.getItem("savedExitTime")).diff(localStorage.getItem("savedEntryTime"))));
+		//Also save this to database
+		$.post("/saveData", {signum : localStorage.getItem("signum"), todayDay : localStorage.getItem("associatedDate"), entryTime : localStorage.getItem("savedEntryTime"), exitTime : localStorage.getItem("savedExitTime")});
+	}
 });
