@@ -85,6 +85,9 @@ function getCurrentTime () {
 }
 
 function toggleActive(){
+
+  localStorage.setItem("istoggleActive", "yes");
+
   if(!$("#timerToggle").hasClass('active')){
     $("#timerToggle").addClass('active');
   } 
@@ -127,6 +130,8 @@ function toggleActive(){
 }
 
 function toggleInactive(){
+  localStorage.setItem("istoggleActive", "no");
+
   localStorage.setItem("savedExitTime", getCurrentTime());
   $("#exitTime").text(localStorage.getItem("savedExitTime"));
 

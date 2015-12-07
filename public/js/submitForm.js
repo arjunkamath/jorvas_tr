@@ -13,6 +13,12 @@ $('#submitData').click(function() {
 });
 
 $('#gotoDB').click(function() {
+	
+	if(localStorage.getItem("istoggleActive") == "yes"){
+		alert("Sorry, you cannot check data while timer is active")
+		return;
+	}
+
 	$.post("/ownDB", {signum : localStorage.getItem("signum")}, function(data){
 		//console.log(data);
 		//$(".result").html( data );
