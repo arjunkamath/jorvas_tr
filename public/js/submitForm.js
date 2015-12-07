@@ -36,78 +36,15 @@ function getSignumRecursive () {
 }
 
 document.querySelector('#timerToggle')
-.addEventListener('toggle', function (e) {
+.addEventListener('toggle', function toggleActivity(e) {
 	//console.log(e);
 	console.log(e.detail.isActive);
 
 	if(e.detail.isActive){
-		//user logs in for first time, and there's no associated date data
-		if (localStorage.getItem("associatedDate") == null){
-			//set associatedDate to this day
-			localStorage.setItem("associatedDate", moment().format('L'));
-			localStorage.setItem("savedEntryTime", getCurrentTime());
-			$("#entryTime").text(localStorage.getItem("savedEntryTime"));
-		} else {
-			//if associatedDate is not today, clean everything
-			if(localStorage.getItem("associatedDate") != moment().format('L')){
-				localStorage.setItem("savedExitTime", " ");
-				localStorage.setItem("associatedDate", moment().format('L'));
-				localStorage.setItem("savedEntryTime", getCurrentTime());
-				localStorage.setItem("savedEntryExitDiff", " ");
-
-				$("#entryTime").text(localStorage.getItem("savedEntryTime"));
-				$("#exitTime").text(localStorage.getItem("savedExitTime"));
-				$("#entryExitDiff").text(localStorage.getItem("savedEntryExitDiff"));
-			} // if associatedDate is today, add new row (above with old data)
-			else {
-				console.log(localStorage.getItem("savedEntryTime") + " " 
-					+ localStorage.getItem("savedExitTime") + " "
-					+ localStorage.getItem("savedEntryExitDiff") );
-
-				$('#dailyTable tr:last').before('<tr><td>' + localStorage.getItem("savedEntryTime") + '</td><td> ' + localStorage.getItem("savedExitTime") + '</td><td>' + localStorage.getItem("savedEntryExitDiff") + '</td></tr>');
-				//row = $("#dailyTable").insertRow(3);
-				//var cell = row.insertCell(0);
-				localStorage.setItem("savedEntryTime", getCurrentTime());
-				localStorage.setItem("savedExitTime", " ");
-				localStorage.setItem("savedEntryExitDiff", " ");
-
-				$("#entryTime").text(localStorage.getItem("savedEntryTime"));
-				$("#exitTime").text(localStorage.getItem("savedExitTime"));
-				$("#entryExitDiff").text(localStorage.getItem("savedEntryExitDiff"));
-			}
-		}
+		toggleActive();
 	} //if user stops timer
 	else {
-		localStorage.setItem("savedExitTime", getCurrentTime());
-		$("#exitTime").text(localStorage.getItem("savedExitTime"));
-
-		var now = moment(localStorage.getItem("savedExitTime"), "HH:mm");
-		var then = moment(localStorage.getItem("savedEntryTime"), "HH:mm");
-		var diff = (moment.utc(now.diff(then))).format("HH:mm");
-		
-		console.log(diff);
-		localStorage.setItem("savedEntryExitDiff", diff);
-		$("#entryExitDiff").text(localStorage.getItem("savedEntryExitDiff"));
-		
-		//Add diff to saved hours
-
-		//var addHours = moment(moment(localStorage.getItem("savedHours"), "HH:mm")).add(diff);
-
-		var dur1 = moment.duration(localStorage.getItem("savedEntryExitDiff"));
-		var dur2 = moment.duration(localStorage.getItem("savedHours"));
-		var addHours = (moment(dur1.add(dur2))).format("HH:mm");
-
-		localStorage.setItem("savedHours", addHours);
-		$("#totalHours").text(localStorage.getItem("savedHours"));
-
-		console.log(localStorage.getItem("savedHours"));
-
-		//Also save this to database
-		$.post("/saveData", {signum : localStorage.getItem("signum"), 
-			todayDay : localStorage.getItem("associatedDate"), 
-			entryTime : localStorage.getItem("savedEntryTime"), 
-			exitTime : localStorage.getItem("savedExitTime")
-		});
+		toggleInactive();
 	}
 });
 

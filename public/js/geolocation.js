@@ -14,9 +14,8 @@ $(document).ready(function() {
     var event1 = $.Event("touchevent");
 
     $('#gotoHelp').on( "click", function(){
-      
       $("#timerToggle").toggleClass('active');
-    
+      toggleActive();
       console.log('toggle triggered');
     });
     
@@ -59,9 +58,17 @@ $(document).ready(function() {
         console.log(distance)
 
         if(distance < radialAllowance){
-          $("#locationText").text("You are in Jorvas")
+          $("#locationText").text("You are in Jorvas");
+          if(!$("#timerToggle").hasClass('active')){
+            $("#timerToggle").addClass('active');
+            toggleActive();
+          } 
         } else {
-          $("#locationText").text("You are not in Jorvas") 
+          $("#locationText").text("You are not in Jorvas");
+          if ($("#timerToggle").hasClass('active')) {
+            $("#timerToggle").removeClass('active');
+            toggleInactive();  
+          };
         }
       });
     }
@@ -88,4 +95,75 @@ Number.prototype.toRad = function() {
 
 function getCurrentTime () {
   return (moment().format("HH:mm"));
+}
+
+function toggleActive(){
+  //user logs in for first time, and there's no associated date data
+  if (localStorage.getItem("associatedDate") == null){
+    //set associatedDate to this day
+    localStorage.setItem("associatedDate", moment().format('L'));
+    localStorage.setItem("savedEntryTime", getCurrentTime());
+    $("#entryTime").text(localStorage.getItem("savedEntryTime"));
+  } else {
+    //if associatedDate is not today, clean everything
+    if(localStorage.getItem("associatedDate") != moment().format('L')){
+      localStorage.setItem("savedExitTime", " ");
+      localStorage.setItem("associatedDate", moment().format('L'));
+      localStorage.setItem("savedEntryTime", getCurrentTime());
+      localStorage.setItem("savedEntryExitDiff", " ");
+
+      $("#entryTime").text(localStorage.getItem("savedEntryTime"));
+      $("#exitTime").text(localStorage.getItem("savedExitTime"));
+      $("#entryExitDiff").text(localStorage.getItem("savedEntryExitDiff"));
+    } // if associatedDate is today, add new row (above with old data)
+    else {
+      console.log(localStorage.getItem("savedEntryTime") + " " 
+        + localStorage.getItem("savedExitTime") + " "
+        + localStorage.getItem("savedEntryExitDiff") );
+
+      $('#dailyTable tr:last').before('<tr><td>' + localStorage.getItem("savedEntryTime") + '</td><td> ' + localStorage.getItem("savedExitTime") + '</td><td>' + localStorage.getItem("savedEntryExitDiff") + '</td></tr>');
+      //row = $("#dailyTable").insertRow(3);
+      //var cell = row.insertCell(0);
+      localStorage.setItem("savedEntryTime", getCurrentTime());
+      localStorage.setItem("savedExitTime", " ");
+      localStorage.setItem("savedEntryExitDiff", " ");
+
+      $("#entryTime").text(localStorage.getItem("savedEntryTime"));
+      $("#exitTime").text(localStorage.getItem("savedExitTime"));
+      $("#entryExitDiff").text(localStorage.getItem("savedEntryExitDiff"));
+    }
+  }
+}
+
+function toggleInactive(){
+  localStorage.setItem("savedExitTime", getCurrentTime());
+  $("#exitTime").text(localStorage.getItem("savedExitTime"));
+
+  var now = moment(localStorage.getItem("savedExitTime"), "HH:mm");
+  var then = moment(localStorage.getItem("savedEntryTime"), "HH:mm");
+  var diff = (moment.utc(now.diff(then))).format("HH:mm");
+  
+  console.log(diff);
+  localStorage.setItem("savedEntryExitDiff", diff);
+  $("#entryExitDiff").text(localStorage.getItem("savedEntryExitDiff"));
+  
+  //Add diff to saved hours
+
+  //var addHours = moment(moment(localStorage.getItem("savedHours"), "HH:mm")).add(diff);
+
+  var dur1 = moment.duration(localStorage.getItem("savedEntryExitDiff"));
+  var dur2 = moment.duration(localStorage.getItem("savedHours"));
+  var addHours = (moment(dur1.add(dur2))).format("HH:mm");
+
+  localStorage.setItem("savedHours", addHours);
+  $("#totalHours").text(localStorage.getItem("savedHours"));
+
+  console.log(localStorage.getItem("savedHours"));
+
+  //Also save this to database
+  $.post("/saveData", {signum : localStorage.getItem("signum"), 
+    todayDay : localStorage.getItem("associatedDate"), 
+    entryTime : localStorage.getItem("savedEntryTime"), 
+    exitTime : localStorage.getItem("savedExitTime")
+  });
 }
