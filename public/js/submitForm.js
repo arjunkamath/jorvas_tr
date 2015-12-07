@@ -14,12 +14,61 @@ $('#submitData').click(function() {
 
 $('#gotoDB').click(function() {
 	$.post("/ownDB", {signum : localStorage.getItem("signum")}, function(data){
-		console.log(data);
+		//console.log(data);
 		//$(".result").html( data );
 		//var content = $( data ).find( "#content" );
    		//$( "#result" ).empty().append( data );
    		$( ".content" ).append( data );
 	});
+
+	//toggle Active visual on top tab
+	if(!$("#gotoDB").hasClass('active')){
+        $("#gotoDB").addClass('active');
+    }
+
+    if($("#gotoHome").hasClass('active')){
+        $("#gotoHome").removeClass('active');
+    } else if($("#gotoHelp").hasClass('active')){
+        $("#gotoHelp").removeClass('active');
+    }
+
+});
+
+$('#gotoHome').click(function() {
+	$.get("/", function(data){
+		$( ".content" ).append( data );
+	});
+
+	if(!$("#gotoHome").hasClass('active')){
+        $("#gotoHome").addClass('active');
+    }
+
+    if($("#gotoDB").hasClass('active')){
+        $("#gotoDB").removeClass('active');
+    } else if($("#gotoHelp").hasClass('active')){
+        $("#gotoHelp").removeClass('active');
+    }
+	
+});
+
+$('#gotoHelp').click(function() {
+
+	console.log("goto Help");
+	$.get("/help", function(data){
+		console.log(data)
+		$( ".content" ).empty();
+		$( ".content" ).append(data);
+	});
+	
+	if(!$("#gotoHelp").hasClass('active')){
+        $("#gotoHelp").addClass('active');
+    }
+
+    if($("#gotoDB").hasClass('active')){
+        $("#gotoDB").removeClass('active');
+    } else if($("#gotoHome").hasClass('active')){
+        $("#gotoHome").removeClass('active');
+    }
 });
 
 function getSignumRecursive () {

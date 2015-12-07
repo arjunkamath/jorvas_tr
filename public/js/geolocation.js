@@ -10,17 +10,7 @@ $(document).ready(function() {
     $("#displayedSignum").text(localStorage.getItem("signum"));
 
     getSignumRecursive();
-
-    var event1 = $.Event("touchevent");
-
-    $('#gotoHelp').on( "click", function(){
-      $("#timerToggle").toggleClass('active');
-      toggleActive();
-      console.log('toggle triggered');
-    });
-    
-
-    
+  
     var jorvasPosLat = 60.1302003;
     var jorvasPosLong = 24.51244;
     var distance;
