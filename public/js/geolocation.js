@@ -58,6 +58,7 @@ $(document).ready(function() {
           //if ($("#timerToggle").hasClass('active')) {
           //  $("#timerToggle").removeClass('active');
           //  toggleInactive();  
+          //}
         }
       });
     }
