@@ -55,9 +55,9 @@ $(document).ready(function() {
           } 
         } else {
           $("#locationText").text("You are not in Jorvas");
-          if ($("#timerToggle").hasClass('active')) {
-            $("#timerToggle").removeClass('active');
-            toggleInactive();  
+          //if ($("#timerToggle").hasClass('active')) {
+          //  $("#timerToggle").removeClass('active');
+          //  toggleInactive();  
           };
         }
       });
