@@ -4,7 +4,7 @@
  */
 //console.log("geolocation called first");
 
-$(function() {
+document.addEventListener('DOMContentLoaded', function() {
     //console.log("geolocation called");
     console.log(localStorage.getItem("signum"));
     $("#displayedSignum").text(localStorage.getItem("signum"));
