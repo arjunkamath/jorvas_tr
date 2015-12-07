@@ -41,10 +41,11 @@ $('#gotoHome').click(function() {
 	//});
 
 	//pressback();
+	var url = "https://sheltered-citadel-7804.herokuapp.com/"
+	window.location = url;
+
 	console.log("home pressed");
 
-	location.reload();
-	
 	if(!$("#gotoHome").hasClass('active')){
         $("#gotoHome").addClass('active');
     }
@@ -55,6 +56,7 @@ $('#gotoHome').click(function() {
         $("#gotoHelp").removeClass('active');
     }
 	
+	//location.reload();
 });
 
 $('#gotoHelp').click(function() {
