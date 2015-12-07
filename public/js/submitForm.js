@@ -66,14 +66,14 @@ $('#gotoHome').click(function() {
 });
 
 $('#gotoHelp').click(function() {
-/*
+
 	console.log("goto Help");
 	$.get("/help", function(data){
 		console.log(data)
 		$( ".content" ).empty();
 		$( ".content" ).append(data);
 	});
-*/	
+	
 	if(!$("#gotoHelp").hasClass('active')){
         $("#gotoHelp").addClass('active');
     }
