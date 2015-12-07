@@ -35,11 +35,13 @@ $('#gotoDB').click(function() {
 });
 
 $('#gotoHome').click(function() {
-	$.get("/", function(data){
-		$( ".content" ).empty();
-		$( ".content" ).append(data);
-	});
+	//$.get("/", function(data){
+	//	$( ".content" ).empty();
+	//	$( ".content" ).append(data);
+	//});
 
+	//pressback();
+	
 	if(!$("#gotoHome").hasClass('active')){
         $("#gotoHome").addClass('active');
     }
@@ -53,14 +55,14 @@ $('#gotoHome').click(function() {
 });
 
 $('#gotoHelp').click(function() {
-
+/*
 	console.log("goto Help");
 	$.get("/help", function(data){
 		console.log(data)
 		$( ".content" ).empty();
 		$( ".content" ).append(data);
 	});
-	
+*/	
 	if(!$("#gotoHelp").hasClass('active')){
         $("#gotoHelp").addClass('active');
     }
@@ -98,3 +100,7 @@ document.querySelector('#timerToggle')
 	}
 });
 
+function pressback(){
+	parent.history.back();
+	return false;
+}

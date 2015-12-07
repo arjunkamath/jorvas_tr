@@ -49,10 +49,7 @@ $(document).ready(function() {
 
         if(distance < radialAllowance){
           $("#locationText").text("You are in Jorvas");
-          if(!$("#timerToggle").hasClass('active')){
-            $("#timerToggle").addClass('active');
-            toggleActive();
-          } 
+          toggleActive();
         } else {
           $("#locationText").text("You are not in Jorvas");
           //if ($("#timerToggle").hasClass('active')) {
@@ -88,6 +85,10 @@ function getCurrentTime () {
 }
 
 function toggleActive(){
+  if(!$("#timerToggle").hasClass('active')){
+    $("#timerToggle").addClass('active');
+  } 
+
   //user logs in for first time, and there's no associated date data
   if (localStorage.getItem("associatedDate") == null){
     //set associatedDate to this day
