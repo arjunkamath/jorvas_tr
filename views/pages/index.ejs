@@ -31,10 +31,10 @@
     <div class="content" data-role="page" id="main-page">
       <div class="card">
         <ul class="table-view">
-          <li class="table-view-cell">Logged in as: <p id="displayedSignum" class="media-object pull-right"></p></li>
-          <li class="table-view-cell">Today's date: <p id="displayedDate" class="media-object pull-right"></p></li>
+          <li class="table-view-cell"><h2 id="displayedSignum"></h2></li>
+          <li class="table-view-cell">Today's date: <p id="displayedDate"></p></li>
           <!--<li class="table-view-cell">Hours logged: <p id="totalHours" class="media-object pull-right"></p></li>-->
-          <li class="table-view-cell">Location: <p id="locationText" class="media-object pull-right"></p></li>
+          <li class="table-view-cell">Location: <p id="locationText"></p></li>
           <li class="table-view-cell">Work Timer:<div class="toggle" id="timerToggle"> <div class="toggle-handle"></div>
           </div>
         </ul>
@@ -43,8 +43,8 @@
         <table class="table table-striped" id="dailyTable">
           <thead>
             <tr>
-              <th>Start</th>
-              <th>Stop</th>
+              <th>Start Time</th>
+              <th>Stop Time</th>
               <th>Duration</th>
             </tr>
           </thead>
