@@ -36,7 +36,8 @@ $('#gotoDB').click(function() {
 
 $('#gotoHome').click(function() {
 	$.get("/", function(data){
-		$( ".content" ).append( data );
+		$( ".content" ).empty();
+		$( ".content" ).append(data);
 	});
 
 	if(!$("#gotoHome").hasClass('active')){
