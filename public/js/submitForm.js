@@ -41,6 +41,9 @@ $('#gotoHome').click(function() {
 	//});
 
 	//pressback();
+	console.log("home pressed");
+
+	location.reload();
 	
 	if(!$("#gotoHome").hasClass('active')){
         $("#gotoHome").addClass('active');
