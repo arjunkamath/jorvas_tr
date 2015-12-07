@@ -14,7 +14,7 @@ $(document).ready(function() {
     var jorvasPosLat = 60.1302003;
     var jorvasPosLong = 24.51244;
     var distance;
-    var radialAllowance = 0.25;
+    var radialAllowance = 1;
     //var lastInJorvas =  null;
     //var savedEntryTime = null;
     //var savedExitTime = null;
