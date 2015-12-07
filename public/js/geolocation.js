@@ -58,11 +58,6 @@ $(document).ready(function() {
           //if ($("#timerToggle").hasClass('active')) {
           //  $("#timerToggle").removeClass('active');
           //  toggleInactive();  
-<<<<<<< HEAD
-          //};
-=======
-          };
->>>>>>> 9ffb703d543c960751ac6bd46484854741eda3a5
         }
       });
     }
