@@ -15,7 +15,7 @@ $('#submitData').click(function() {
 $('#gotoDB').click(function() {
 	
 	if(localStorage.getItem("istoggleActive") == "yes"){
-		alert("Sorry, you cannot check data while timer is active")
+		alert("Sorry, you cannot navigate while timer is active")
 		return;
 	}
 
@@ -68,7 +68,7 @@ $('#gotoHome').click(function() {
 $('#gotoHelp').click(function() {
 
 	if(localStorage.getItem("istoggleActive") == "yes"){
-		alert("Sorry, you cannot check data while timer is active")
+		alert("Sorry, you cannot navigate while timer is active")
 		return;
 	}
 
