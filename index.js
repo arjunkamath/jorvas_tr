@@ -57,6 +57,7 @@ app.post('/ownDB', function (request, response) {
 
 
 app.post('/saveData', function (request, response){
+
     console.log("Submit form: " + request.body.signum + ", " + request.body.todayDay + ", " + request.body.entryTime + ", " + request.body.exitTime + ", " + request.body.diff);
 
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
