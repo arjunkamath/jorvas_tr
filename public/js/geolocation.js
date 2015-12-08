@@ -54,11 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
           toggleActive();
         } else {
           $("#locationText").text("You are not in Jorvas");
-          toggleInactive();  
-          //if ($("#timerToggle").hasClass('active')) {
-          //  $("#timerToggle").removeClass('active');
-          //  toggleInactive();  
-          //}
+          //toggleInactive(); 
         }
       });
     }
