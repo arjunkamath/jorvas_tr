@@ -169,10 +169,14 @@ function toggleInactive(){
 
   console.log(localStorage.getItem("savedHours"));
 
-  //Also save this to database
-  $.post("/saveData", {signum : localStorage.getItem("signum"), 
-    todayDay : localStorage.getItem("associatedDate"), 
-    entryTime : localStorage.getItem("savedEntryTime"), 
-    exitTime : localStorage.getItem("savedExitTime")
-  });
+  //Also save this to database, unless diff is 00 meaning, user is playing around
+  if(localStorage.getItem("savedEntryExitDiff") != "00:00"){
+    $.post("/saveData", {signum : localStorage.getItem("signum"), 
+      todayDay : localStorage.getItem("associatedDate"), 
+      entryTime : localStorage.getItem("savedEntryTime"), 
+      exitTime : localStorage.getItem("savedExitTime"),
+      diff : localStorage.getItem("savedEntryExitDiff")
+    });  
+  }
+  
 }
