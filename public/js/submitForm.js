@@ -47,7 +47,7 @@ $('#gotoHome').click(function() {
 	//});
 
 	//pressback();
-	var url = "https://sheltered-citadel-7804.herokuapp.com/"
+	var url = "https://jorvas.herokuapp.com/"
 	window.location = url;
 
 	console.log("home pressed");
