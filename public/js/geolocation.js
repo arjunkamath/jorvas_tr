@@ -28,12 +28,14 @@ document.addEventListener('DOMContentLoaded', function() {
       $("#entryTime").text(localStorage.getItem("savedEntryTime"));
       $("#exitTime").text(localStorage.getItem("savedExitTime"));  
       $("#entryExitDiff").text(localStorage.getItem("savedEntryExitDiff"));
-      $("#totalHours").text(localStorage.getItem("savedHours"));
+      $("#totalHours").text((localStorage.getItem("savedHours")).slice(0,4));
     } else {
       $("#entryTime").text(" ");
       $("#exitTime").text(" ");
       $("#entryExitDiff").text(" ");
-      $("#totalHours").text("00:00");
+      $("#totalHours").text("0.0");
+
+      localStorage.setItem("savedHours", "0.0");
     }
     
     //this is the default text
@@ -158,16 +160,12 @@ function toggleInactive(){
   localStorage.setItem("savedEntryExitDiff", diff);
   $("#entryExitDiff").text(localStorage.getItem("savedEntryExitDiff"));
   
-  //Add diff to saved hours
+  var newDur = moment.duration(localStorage.getItem("savedEntryExitDiff"));
+  var sumDur = moment.duration(localStorage.getItem("savedHours"), 'h');
+  var totalDur = moment.duration(newDur.add(sumDur)).asHours();
 
-  //var addHours = moment(moment(localStorage.getItem("savedHours"), "HH:mm")).add(diff);
-
-  var dur1 = moment.duration(localStorage.getItem("savedEntryExitDiff"));
-  var dur2 = moment.duration(localStorage.getItem("savedHours"));
-  var addHours = (moment(dur1.add(dur2))).format("HH:mm");
-
-  localStorage.setItem("savedHours", addHours);
-  $("#totalHours").text(localStorage.getItem("savedHours"));
+  localStorage.setItem("savedHours", totalDur);
+  $("#totalHours").text((localStorage.getItem("savedHours")).slice(0,4));
 
   console.log(localStorage.getItem("savedHours"));
 

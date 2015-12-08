@@ -60,7 +60,7 @@ app.post('/saveData', function (request, response){
     console.log("Submit form: " + request.body.signum + ", " + request.body.todayDay + ", " + request.body.entryTime + ", " + request.body.exitTime);
 
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-      client.query("INSERT INTO flexim_data(signum, day, entry, exit) values($1, $2, $3, $4)", [request.body.signum, request.body.todayDay, request.body.entryTime, request.body.exitTime], function(err, result) {
+      client.query("INSERT INTO flexim_data(signum, day, entry, exit, diff) values($1, $2, $3, $4, $5)", [request.body.signum, request.body.todayDay, request.body.entryTime, request.body.exitTime, request.body.diff], function(err, result) {
         done();
         if (err) { 
           console.error(err); 

@@ -9,7 +9,7 @@
  	      <ul class="list-group">
           <% results.forEach(function(r) { %>
           <li class="list-group-item">
-      	    <%= r.signum %> <%= r.day %> - <%= r.entry %> - <%= r.exit %>
+      	    <%= r.day %> : <%= r.entry %> - <%= r.exit %> , <%= r.diff %>
           </li><% }); %>
         </ul>
       </div>  

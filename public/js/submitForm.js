@@ -1,6 +1,7 @@
 var dayForm = localStorage.getItem("todayDay");
 var entryTimeForm = localStorage.getItem("savedEntryTime");
 var exitTimeForm = localStorage.getItem("savedExitTime");
+var diffForm = localStorage.getItem("savedEntryExitDiff");
 
 $('#submitData').click(function() {
 	var text_value = $("#signumVal").val();
@@ -8,7 +9,7 @@ $('#submitData').click(function() {
 		alert("Please enter signum");
 	} else {
 		//alert(text_value);
-		$.post("/saveData", {signum : text_value, todayDay : dayForm, entryTime : entryTimeForm, exitTime : exitTimeForm});
+		$.post("/saveData", {signum : text_value, todayDay : dayForm, entryTime : entryTimeForm, exitTime : exitTimeForm, diff: diffForm});
 	}
 });
 
