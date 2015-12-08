@@ -45,7 +45,7 @@ app.get('/db', function (request, response) {
 
 app.post('/ownDB', function (request, response) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query("SELECT day, entry, exit FROM flexim_data WHERE signum = ($1)", [request.body.signum], function(err, result) {
+    client.query("SELECT day, entry, exit FROM flexim_data WHERE signum = ($1) order by day desc", [request.body.signum], function(err, result) {
       done();
       if (err)
        { console.error(err); response.send("Error " + err); }
