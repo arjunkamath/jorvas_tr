@@ -67,6 +67,11 @@ $('#gotoHome').click(function() {
 
 $('#gotoHelp').click(function() {
 
+	if(localStorage.getItem("istoggleActive") == "yes"){
+		alert("Sorry, you cannot check data while timer is active")
+		return;
+	}
+
 	console.log("goto Help");
 	$.get("/help", function(data){
 		console.log(data)
