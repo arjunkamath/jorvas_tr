@@ -86,6 +86,11 @@ function getCurrentTime () {
 
 function toggleActive(){
 
+  // don't actvate if active
+  if(localStorage.getItem("istoggleActive") == "yes"){
+    return;
+  }
+
   localStorage.setItem("istoggleActive", "yes");
 
   if(!$("#timerToggle").hasClass('active')){
@@ -130,7 +135,17 @@ function toggleActive(){
 }
 
 function toggleInactive(){
+
+  // don't inactvate if inactive
+  if(localStorage.getItem("istoggleActive") == "no"){
+    return;
+  }
+
   localStorage.setItem("istoggleActive", "no");
+
+  if($("#timerToggle").hasClass('active')){
+    $("#timerToggle").removeClass('active');
+  }
 
   localStorage.setItem("savedExitTime", getCurrentTime());
   $("#exitTime").text(localStorage.getItem("savedExitTime"));
