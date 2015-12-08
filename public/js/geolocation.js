@@ -51,9 +51,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if(distance < radialAllowance){
           $("#locationText").text("You are in Jorvas");
-          //toggleActive();
+          toggleActive();
         } else {
           $("#locationText").text("You are not in Jorvas");
+          toggleInactive();  
           //if ($("#timerToggle").hasClass('active')) {
           //  $("#timerToggle").removeClass('active');
           //  toggleInactive();  
