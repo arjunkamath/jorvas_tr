@@ -92,7 +92,7 @@ function getSignumRecursive () {
 document.querySelector('#timerToggle')
 .addEventListener('toggle', function toggleActivity(e) {
 	//console.log(e);
-	console.log(e.detail.isActive);
+	//console.log(e.detail.isActive);
 
 	if(e.detail.isActive){
 		toggleActive();

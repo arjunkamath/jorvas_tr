@@ -124,11 +124,11 @@ function toggleActive(){
       //var cell = row.insertCell(0);
       localStorage.setItem("savedEntryTime", getCurrentTime());
       localStorage.setItem("savedExitTime", " ");
-      localStorage.setItem("savedEntryExitDiff", " ");
+      //localStorage.setItem("savedEntryExitDiff", " ");
 
       $("#entryTime").text(localStorage.getItem("savedEntryTime"));
       $("#exitTime").text(localStorage.getItem("savedExitTime"));
-      $("#entryExitDiff").text(localStorage.getItem("savedEntryExitDiff"));
+      $("#entryExitDiff").text(" ");
     }
   }
 }
@@ -152,19 +152,24 @@ function toggleInactive(){
   var now = moment(localStorage.getItem("savedExitTime"), "HH:mm");
   var then = moment(localStorage.getItem("savedEntryTime"), "HH:mm");
   var diff = (moment.utc(now.diff(then))).format("HH:mm");
+ 
+  console.log('old savedHours ' + localStorage.getItem("savedHours"));
+  //console.log('old savedEntryExitDiff ' + localStorage.getItem("savedEntryExitDiff"));
+  //console.log('Diff in format ' + diff);
   
-  console.log(diff);
   localStorage.setItem("savedEntryExitDiff", diff);
   $("#entryExitDiff").text(localStorage.getItem("savedEntryExitDiff"));
+
+  console.log('savedEntryExitDiff ' + localStorage.getItem("savedEntryExitDiff"));
   
   var newDur = moment.duration(localStorage.getItem("savedEntryExitDiff"));
-  var sumDur = moment.duration(localStorage.getItem("savedHours"), 'h');
+  var sumDur = moment.duration(Number(localStorage.getItem("savedHours")), 'h');
   var totalDur = moment.duration(newDur.add(sumDur)).asHours();
 
   localStorage.setItem("savedHours", totalDur);
-  $("#totalHours").text((localStorage.getItem("savedHours")).slice(0,4));
+  console.log('savedHours ' + localStorage.getItem("savedHours"));
 
-  console.log(localStorage.getItem("savedHours"));
+  $("#totalHours").text((localStorage.getItem("savedHours")).slice(0,4));
 
   //Also save this to database, unless diff is 00 meaning, user is playing around
   if(localStorage.getItem("savedEntryExitDiff") != "00:00"){
