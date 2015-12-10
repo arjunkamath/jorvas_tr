@@ -20,7 +20,9 @@ document.addEventListener('DOMContentLoaded', function() {
     //var savedExitTime = null;
 
     console.log("Today's date: " + moment().format('L'));
+    console.log("associated date " + localStorage.getItem("associatedDate") );
 
+    //set display date to today
     $("#displayedDate").text("w" + moment().format("ww ddd, D MMM YYYY"));
 
     //if associatedDate is today, display values to user
@@ -105,6 +107,12 @@ function toggleActive(){
   } else {
     //if associatedDate is not today, clean everything
     if(localStorage.getItem("associatedDate") != moment().format('L')){
+      console.log("Logging in first time today");
+
+      //set display date to today and savedHours to 0 in case missed before
+      $("#displayedDate").text("w" + moment().format("ww ddd, D MMM YYYY"));
+      localStorage.setItem("savedHours", "0.0");
+
       localStorage.setItem("savedExitTime", " ");
       localStorage.setItem("associatedDate", moment().format('L'));
       localStorage.setItem("savedEntryTime", getCurrentTime());
